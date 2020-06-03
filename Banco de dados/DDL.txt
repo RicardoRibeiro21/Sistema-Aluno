@@ -1,0 +1,28 @@
+CREATE DATABASE sistemaAluno;
+
+USE sistemaAluno;
+
+CREATE TABLE alunos (
+	rgm				VARCHAR(9) NOT NULL UNIQUE PRIMARY KEY,
+	nome				VARCHAR(100) NOT NULL,
+	data_nascimento			VARCHAR(10) NOT NULL,
+	cpf				VARCHAR(14) NOT NULL UNIQUE,
+	email				VARCHAR(100) NOT NULL UNIQUE, 
+   	celular				VARCHAR(15) NOT NULL UNIQUE,		
+	endereco			VARCHAR(100) NOT NULL,
+	municipio			VARCHAR(50) NOT NULL,
+	uf				CHAR(2)	NOT NULL,		
+	curso				VARCHAR(100) NOT NULL,
+	campus				VARCHAR(50) NOT NULL,
+	periodo				VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE notas_faltas (
+	cod_nota_falta		INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	disciplina			VARCHAR(100) NOT NULL,
+	semestre			VARCHAR(6) NOT NULL,
+	nota				VARCHAR(4) NOT NULL,
+	falta				INT DEFAULT '0',
+	rgm				VARCHAR(9) NOT NULL,
+	CONSTRAINT fk_rgm FOREIGN KEY (rgm) REFERENCES alunos (rgm)
+);
